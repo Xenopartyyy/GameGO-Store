@@ -23,5 +23,8 @@ Route::get('/read', [CRUDController::class, 'readUser']);
 Route::get('/update', [CRUDController::class, 'update']);
 Route::get('/detail', [CRUDController::class, 'detail']);
 Route::get('/',[MainController::class,'index']);
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index']);
+Route::get('/tester', function(){
+    return view ('tester');
+});
 
