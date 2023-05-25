@@ -9,7 +9,6 @@ class MainController extends Controller
 
     public function index()
     {
-        $judul = "Arkatama Store";
         $produk = [
             [
             
@@ -56,7 +55,7 @@ class MainController extends Controller
 
             ];
 
-        return view("landing", compact('judul', 'produk'));
+        return view("landing", compact('produk'));
     }
 
     /**

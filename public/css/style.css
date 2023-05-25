@@ -1,3 +1,11 @@
-.makan p{
-    color: blue;
+.navbar{
+    background-color: rgb(5, 255, 151);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    height: 12vh;
+    
+}
+
+.logo span{
+    font-weight: 500;
+    color: rgb(255, 72, 0);
 }

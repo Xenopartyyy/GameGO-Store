@@ -16,10 +16,6 @@
 
 
 <style>
-    body { 
-     padding-top: 3.5em; 
-    }
-
     .navside li{
         margin: 2em 0;
         text-decoration: none;

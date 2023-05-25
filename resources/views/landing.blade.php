@@ -3,7 +3,7 @@
 
 @section('konten')
 {{-- carousel start --}}
-<div id="carouselExampleIndicators" class="carousel slide mt-5">
+<div id="carouselExampleIndicators" class="carousel slide ">
     <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
         aria-current="true" aria-label="Slide 1"></button>
@@ -14,15 +14,15 @@
     </div>
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img src="https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(121).webp" class="d-block w-100"
+            <img src={{ asset('asset/slide1.jpg') }} class="d-block w-100"
             alt="...">
         </div>
         <div class="carousel-item">
-            <img src="https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(31).webp" class="d-block w-100"
+            <img src={{ asset('asset/slide2.jpg') }} class="d-block w-100"
             alt="...">
         </div>
         <div class="carousel-item">
-            <img src="https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(88).webp" class="d-block w-100"
+            <img src={{ asset('asset/slider3.jpg') }} class="d-block w-100"
             alt="...">
         </div>
     </div>
