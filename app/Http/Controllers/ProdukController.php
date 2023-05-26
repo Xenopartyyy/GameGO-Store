@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Produk;
+use App\Http\Requests\StoreProdukRequest;
+use App\Http\Requests\UpdateProdukRequest;
 
 class ProdukController extends Controller
 {
@@ -13,48 +15,8 @@ class ProdukController extends Controller
      */
     public function index()
     {
-        $produk = [
-            [
-                'Nama' => 'Acer Predator X51',
-                'Deskripsi' => 'Laptop Gaming',
-                'Harga' => '15.000.000',
-                'Status' => 'Accepted'
-            ],
-            [
-                'Nama' => 'Laptop Asus ROG',
-                'Deskripsi' => 'Laptop Gaming',
-                'Harga' => '16.000.000',
-                'Status' => 'Accepted'
-            ],
-            [
-                'Nama' => 'PlayStation 5',
-                'Deskripsi' => 'PlayStation 5 Bagus',
-                'Harga' => '7.000.000',
-                'Status' => 'Accepted'
-            ],
-            [
-                'Nama' => 'PlayStation 4',
-                'Deskripsi' => 'PlayStation 4 Bagus',
-                'Harga' => '3.500.000',
-                'Status' => 'Accepted'
-            ],
-
-            [
-                'Nama' => 'Xiaomi BlackShark',
-                'Deskripsi' => 'Smartphone Gaming',
-                'Harga' => '8.000.000',
-                'Status' => 'Accepted'
-            ],
-
-            [
-                'Nama' => 'Asus ROG Phone 4',
-                'Deskripsi' => 'Smartphone Gaming',
-                'Harga' => '10.000.000',
-                'Status' => 'Accepted'
-            ]
-            ];
-
-        return view('produk.daftarproduk', compact('produk'));
+        $produk = Produk::all();
+        return view ('produk.produk', compact("produk"));
     }
 
     /**
@@ -64,27 +26,28 @@ class ProdukController extends Controller
      */
     public function create()
     {
-        //
+        return view('produk.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreProdukRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProdukRequest $request)
     {
-        //
+        Produk::create($request->except(['_token','submit']));
+        return redirect('/produk');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Produk  $produk
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Produk $produk)
     {
         //
     }
@@ -92,34 +55,41 @@ class ProdukController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Produk  $produk
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        $produk = Produk::find($id);
+        return view('produk.edit', compact('produk'));
+        // return redirect('/produk');
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Http\Requests\UpdateProdukRequest  $request
+     * @param  \App\Models\Produk  $produk
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateProdukRequest $request, $id)
     {
-        //
+        $produk = Produk::findOrFail($id);
+        $produk->update($request->except(['_token','submit']));
+        return redirect('/produk');
     }
+     
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Produk  $produk
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
+        $produk = Produk::findOrFail($id);
+        $produk->delete();
+        return redirect('/produk');
     }
 }

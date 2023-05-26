@@ -2,21 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kategori;
+use App\Models\Slider;
 use Illuminate\Http\Request;
 
-class KategoriController extends Controller
+class SliderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $kategori = Kategori::all();
-        return view('kategori.kategori', compact('kategori'));
-
+        $slider = Slider::all();
+        return view('slider.slider', compact('slider'));
     }
 
     /**
@@ -26,7 +20,7 @@ class KategoriController extends Controller
      */
     public function create()
     {
-        return view('kategori.create');
+        return view('slider.create');
     }
 
     /**
@@ -37,8 +31,8 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
-        Kategori::create($request->except(['_token', 'submit']));
-        return redirect('/kategori');
+        Slider::create($request->except(['_token', 'submit']));
+        return redirect('/slider');
     }
 
     /**
@@ -60,9 +54,8 @@ class KategoriController extends Controller
      */
     public function edit($id)
     {
-        $kategori = Kategori::find($id);
-        return view('kategori.edit', compact('kategori'));
-        return view('kategori.edit');
+        $slider = Slider::findOrFail($id);
+        return view('slider.edit', compact('slider'));
     }
 
     /**
@@ -74,9 +67,9 @@ class KategoriController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $kategori = Kategori::find($id);
-        $kategori->update($request->except(['_token', 'submit']));
-        return redirect('/kategori');
+        $slider = Slider::findOrFail($id);
+        $slider->update($request->except(['_token', 'submit']));
+        return redirect('/slider');
     }
 
     /**
@@ -87,8 +80,8 @@ class KategoriController extends Controller
      */
     public function destroy($id)
     {
-        $kategori = Kategori::findOrFail($id);
-        $kategori->delete();
-        return redirect('/kategori');
+        $slider = Slider::findOrFail($id);
+        $slider->delete();
+        return redirect('/slider');
     }
 }

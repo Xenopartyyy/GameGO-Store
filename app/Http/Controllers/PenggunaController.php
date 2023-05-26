@@ -2,56 +2,93 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Pengguna;
+use App\Http\Requests\StorePenggunaRequest;
+use App\Http\Requests\UpdatePenggunaRequest;
 
 class PenggunaController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
+        $pengguna = Pengguna::all();
+        return view('pengguna.pengguna', compact('pengguna'));
+    }
 
-        $pengguna = [
-            [
-                'Email'=>'willy@yahoo.com',
-                'Name'=>'Willy',
-                'Role'=>'Admin',
-                'Phone'=>'085454565258',
-                'Address'=>'Tangerang',
-            ],
-            [
-                'Email'=>'dita@yahoo.com',
-                'Name'=>'dita',
-                'Role'=>'Staff',
-                'Phone'=>'085454565253',
-                'Address'=>'Jakarta',
-            ],
-            [
-                'Email'=>'Wawan@yahoo.com',
-                'Name'=>'Wawan',
-                'Role'=>'Admin',
-                'Phone'=>'085454565123',
-                'Address'=>'Jakarta',
-            ]
-        ];
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('pengguna.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \App\Http\Requests\StorePenggunaRequest  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(StorePenggunaRequest $request)
+    {
+        Pengguna::create($request->except(['_token', 'submit']));
+        return redirect('/pengguna');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Pengguna  $pengguna
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Pengguna $pengguna)
+    {
         
-        return view('pengguna.daftarpengguna', compact('pengguna'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Pengguna  $pengguna
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $pengguna = Pengguna::findOrFail($id);
+        return view('pengguna.edit', compact('pengguna'));
 
     }
 
-    public function indexdua()
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \App\Http\Requests\UpdatePenggunaRequest  $request
+     * @param  \App\Models\Pengguna  $pengguna
+     * @return \Illuminate\Http\Response
+     */
+    public function update(UpdatePenggunaRequest $request,$id)
     {
+        $pengguna = Pengguna::findOrFail($id);
+        $pengguna->update($request->except(['_token', 'submit']));
+        return redirect('/pengguna');
+    }
 
-        $gruppengguna = [
-            [
-                'Role'=>'Admin',
-            ],
-            [
-
-                'Role'=>'Staff',
-
-            ],
-        ];
-        
-        return view('pengguna.gruppengguna', compact('gruppengguna'));
-
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Pengguna  $pengguna
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $pengguna = Pengguna::findOrFail($id);
+        $pengguna->delete();
+        return redirect('/pengguna');
     }
 }
