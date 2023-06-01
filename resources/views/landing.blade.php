@@ -13,18 +13,20 @@
         aria-label="Slide 3"></button>
     </div>
     <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src={{ asset('asset/slide1.jpg') }} class="d-block w-100"
-            alt="...">
-        </div>
-        <div class="carousel-item">
-            <img src={{ asset('asset/slide2.jpg') }} class="d-block w-100"
-            alt="...">
-        </div>
-        <div class="carousel-item">
-            <img src={{ asset('asset/slider3.jpg') }} class="d-block w-100"
-            alt="...">
-        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src={{ asset('asset/Slider/slide1.jpg') }} class="d-block w-100"
+                alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src={{ asset('asset/Slider/slide2.jpg') }} class="d-block w-100"
+                alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src={{ asset('asset/Slider/slide3.jpg') }} class="d-block w-100"
+                alt="...">
+            </div>
+        </div> 
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
     data-bs-slide="prev">

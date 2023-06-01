@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Pengguna;
 use App\Http\Requests\StorePenggunaRequest;
 use App\Http\Requests\UpdatePenggunaRequest;
+use Illuminate\Support\Facades\Storage;
+
+use Illuminate\Support\Facades\Auth;
 
 class PenggunaController extends Controller
 {
@@ -37,7 +40,17 @@ class PenggunaController extends Controller
      */
     public function store(StorePenggunaRequest $request)
     {
-        Pengguna::create($request->except(['_token', 'submit']));
+        $pengguna = Pengguna::create($request->except(['_token', 'submit']));
+
+        if ($request->hasFile('avatar') && $request->file('avatar')->isValid()) {
+            $file = $request->file('avatar');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('storage/avatar'), $filename);
+
+            $pengguna->avatar = $filename;
+            $pengguna->save();
+        }
+
         return redirect('/pengguna');
     }
 
@@ -72,10 +85,20 @@ class PenggunaController extends Controller
      * @param  \App\Models\Pengguna  $pengguna
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePenggunaRequest $request,$id)
+    public function update(UpdatePenggunaRequest $request, $id)
     {
         $pengguna = Pengguna::findOrFail($id);
         $pengguna->update($request->except(['_token', 'submit']));
+
+        if ($request->hasFile('avatar') && $request->file('avatar')->isValid()) {
+            $file = $request->file('avatar');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('storage/avatar'), $filename);
+
+            $pengguna->avatar = $filename;
+            $pengguna->save();
+        }
+
         return redirect('/pengguna');
     }
 
@@ -88,6 +111,8 @@ class PenggunaController extends Controller
     public function destroy($id)
     {
         $pengguna = Pengguna::findOrFail($id);
+        Storage::delete('storage/avatar/' . $pengguna->avatar);
+        
         $pengguna->delete();
         return redirect('/pengguna');
     }

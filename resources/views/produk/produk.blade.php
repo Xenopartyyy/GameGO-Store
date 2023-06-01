@@ -18,19 +18,33 @@
                     </tr>
                 </thead>
                 <tbody>
-                <a href='produk/create' class="btn btn-primary">Tambah Produk</a>
+                @if (Auth::user()->role != 'admin')
+                    
+                @else
+                    <a href='produk/create' class="btn btn-primary">Tambah Produk</a>
+                @endif
                     @foreach($produk as $prdk)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td class="d-flex">
                                 <div class="btn-group">
-                                    <a href='' class="btn btn-primary btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Detail"><i class="fas fa-eye"></i></a>
-                                    <a href='/produk/{{ $prdk->id }}/edit' class="btn btn-warning btn-sm mr-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class="fas fa-edit"></i></a>
-                                    <form action="/produk/{{ $prdk->id }}" method="POST">
-                                        @csrf
-                                        @method('delete')
-                                        <button value="delete" class="btn btn-danger btn-sm delete-link" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i class="fas fa-trash"></i></button>
-                                    </form>
+                                    @if (Auth::user()->role != 'admin')
+                                        -
+                                    @else
+                                        <a href='' class="btn btn-primary btn-sm" data-bs-toggle="tooltip"
+                                            data-bs-placement="top" title="Detail"><i class="fas fa-eye"></i></a>
+                                        <a href='/pengguna/{{ $prdk->id }}/edit' class="btn btn-warning btn-sm mr-1"
+                                            data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i
+                                                class="fas fa-edit"></i></a>
+                                        <form action="/pengguna/{{ $prdk->id }}" method="POST">
+                                            @csrf
+                                            @method('delete')
+                                            <button value="delete" class="btn btn-danger btn-sm delete-link"
+                                                data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"
+                                                onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i
+                                                    class="fas fa-trash"></i></button>
+                                        </form>
+                                    @endif
                                 </div>
                             </td>
                             <td>{{ $prdk['nama'] }}</td>

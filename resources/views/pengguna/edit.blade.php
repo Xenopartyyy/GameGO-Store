@@ -6,7 +6,7 @@
         <div class="container">
             <h1 class="text-center my-5">Edit Pengguna</h1>
 
-            <form action="/pengguna/{{ $pengguna->id }}" method="POST">
+            <form action="/pengguna/{{ $pengguna->id }}" method="POST" enctype="multipart/form-data">
                 @method('put')
                 @csrf
                 <div class="form-group">
@@ -24,13 +24,14 @@
                     <select class="form-control" name="role" required>
                         <option value="staff" {{ $pengguna->role == 'staff' ? 'selected' : '' }}>Staff</option>
                         <option value="admin" {{ $pengguna->role == 'admin' ? 'selected' : '' }}>Admin</option>
+                        <option value="user" {{ $pengguna->role == 'user' ? 'selected' : '' }}>User</option>
                     </select>
                 </div>
                 
 
                 <div class="form-group">
                     <label for="avatar">Avatar</label>
-                    <input type="text" class="form-control" name="avatar" value="{{ $pengguna->avatar }}"required>
+                    <input type="file" class="form-control" name="avatar" required>
                 </div>
 
                 <div class="form-group">

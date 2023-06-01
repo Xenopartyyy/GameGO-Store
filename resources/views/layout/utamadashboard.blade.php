@@ -32,7 +32,7 @@
 </style>
 
     
-    @include('partial.navbar')
+    @include('partial.navbardashboard')
 
 <div class="container-fluid mainco">
     <div class="row">

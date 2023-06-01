@@ -20,7 +20,7 @@
             <a class="nav-link disabled">Disabled</a>
           </li>
           <li class="nav-item">
-            <button class="btn btn-outline-success" type="submit">Login</button>
+            <a class="btn btn-danger" type="submit" href="{{ route('logout') }}">Logout</a>
           </li>
         </ul>
       </div>
