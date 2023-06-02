@@ -37,6 +37,10 @@ class GruppenggunaController extends Controller
      */
     public function store(StoreGruppenggunaRequest $request)
     {
+        $request->validate([
+            'role' => 'required',
+        ]);
+
         Gruppengguna::create($request->except(['_token', 'submit']));
         return redirect('/gruppengguna');
     }
@@ -73,6 +77,10 @@ class GruppenggunaController extends Controller
      */
     public function update(UpdateGruppenggunaRequest $request, $id)
     {
+        $request->validate([
+            'role' => 'required',
+        ]);
+
         $gruppengguna = Gruppengguna::findOrFail($id);
         $gruppengguna->update($request->except(['_token', 'submit']));
         return redirect('/gruppengguna');

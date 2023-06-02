@@ -40,6 +40,16 @@ class PenggunaController extends Controller
      */
     public function store(StorePenggunaRequest $request)
     {
+        $request->validate([
+            'email' => 'required|email:rfc,dns|min:7',
+            'nama' => 'required',
+            'role' => 'required',
+            'avatar' => 'nullable|file',
+            'phone' => 'required|numeric|size:11',
+            'address' => 'required|min:5',
+            'password' => 'required',
+        ]);
+
         $pengguna = Pengguna::create($request->except(['_token', 'submit']));
 
         if ($request->hasFile('avatar') && $request->file('avatar')->isValid()) {
@@ -86,7 +96,18 @@ class PenggunaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(UpdatePenggunaRequest $request, $id)
-    {
+    {   
+
+        $request->validate([
+            'email' => 'required|email:rfc,dns|min:7',
+            'nama' => 'required',
+            'role' => 'required',
+            'avatar' => 'nullable|file',
+            'phone' => 'required|numeric|size:11',
+            'address' => 'required|min:5',
+            'password' => 'required',
+        ]);
+
         $pengguna = Pengguna::findOrFail($id);
         $pengguna->update($request->except(['_token', 'submit']));
 

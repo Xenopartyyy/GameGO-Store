@@ -31,6 +31,12 @@ class SliderController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'nama' => 'required|unique:sliders,nama|max:255|min:5',
+            'url' => 'required|min:5',
+            'banner' => 'required'
+        ]);
+        
         Slider::create($request->except(['_token', 'submit']));
         return redirect('/slider');
     }
@@ -67,6 +73,12 @@ class SliderController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'nama' => 'required|unique:sliders,nama|max:255|min:5',
+            'url' => 'required|min:5',
+            'banner' => 'required'
+        ]);
+        
         $slider = Slider::findOrFail($id);
         $slider->update($request->except(['_token', 'submit']));
         return redirect('/slider');

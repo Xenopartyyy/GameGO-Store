@@ -10,7 +10,12 @@
                 @csrf
                 <div class="form-group">
                     <label for="role">Role Pengguna</label>
-                    <input type="text" class="form-control" name="role" required>
+                    <input type="text" class="form-control @error('role') is-invalid @enderror" name="role" value="{{ old('role') }}">
+                    @error('role')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
                 </div>
                 <button type="submit" name="submit" value="save" class="btn btn-primary">Simpan</button>
                 <a href={{ url('/gruppengguna') }} class="btn btn-danger">Batal</a>

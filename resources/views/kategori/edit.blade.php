@@ -11,12 +11,16 @@
                 @csrf
                 <div class="form-group">
                     <label for="kategori">Nama Kategori</label>
-                    <input type="text" class="form-control" name="kategori" value="{{ $kategori->kategori }}" required>
+                    <input type="text" class="form-control @error('kategori') is-invalid @enderror" name="kategori" value="{{ $kategori->kategori }}" >
+                    @error('kategori')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
                 </div>
 
                 <button type="submit" name="submit" value="save" class="btn btn-primary">Simpan</button>
-                <a href={{ url('/kategori') }} class="btn btn-danger">Batal</a>
-
+                <a href="{{ url('/kategori') }}" class="btn btn-danger">Batal</a>
             </form>
         </div>
     </div>

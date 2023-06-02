@@ -37,6 +37,13 @@ class ProdukController extends Controller
      */
     public function store(StoreProdukRequest $request)
     {
+        $request->validate([
+            'nama' => 'required|min:5|max:100',
+            'deskripsi' => 'required',
+            'harga' => 'required|numeric',
+            'status' => 'required'
+        ]);
+
         Produk::create($request->except(['_token','submit']));
         return redirect('/produk');
     }
@@ -74,6 +81,13 @@ class ProdukController extends Controller
      */
     public function update(UpdateProdukRequest $request, $id)
     {
+        $request->validate([
+            'nama' => 'required|min:5|max:100',
+            'deskripsi' => 'required',
+            'harga' => 'required|numeric',
+            'status' => 'required'
+        ]);
+
         $produk = Produk::findOrFail($id);
         $produk->update($request->except(['_token','submit']));
         return redirect('/produk');
