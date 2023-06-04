@@ -60,7 +60,7 @@ data-bs-slide="next">
             @endforeach
         </div>
     </div>
-    {{-- product end --}}
+    product end
     
     
     @endsection

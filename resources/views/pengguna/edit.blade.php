@@ -2,7 +2,6 @@
 
 @section('kontendashboard')
     {{-- dashboard content start --}}
-    <div class="col-10">
         <div class="container">
             <h1 class="text-center my-5">Edit Pengguna</h1>
 
@@ -32,9 +31,9 @@
                 <div class="form-group">
                     <label for="role">Role</label>
                     <select class="form-control" name="role" >
+                        <option value="user" {{ $pengguna->role == 'user' ? 'selected' : '' }}>User</option>
                         <option value="staff" {{ $pengguna->role == 'staff' ? 'selected' : '' }}>Staff</option>
                         <option value="admin" {{ $pengguna->role == 'admin' ? 'selected' : '' }}>Admin</option>
-                        <option value="user" {{ $pengguna->role == 'user' ? 'selected' : '' }}>User</option>
                     </select>
                 </div>
                 
@@ -84,5 +83,4 @@
 
             </form>
         </div>
-    </div>
 @endsection

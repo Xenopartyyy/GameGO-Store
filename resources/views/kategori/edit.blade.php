@@ -2,7 +2,6 @@
 
 @section('kontendashboard')
     {{-- dashboard content start --}}
-    <div class="col-10">
         <div class="container">
             <h1 class="text-center my-5">Edit Kategori</h1>
 
@@ -23,5 +22,4 @@
                 <a href="{{ url('/kategori') }}" class="btn btn-danger">Batal</a>
             </form>
         </div>
-    </div>
 @endsection

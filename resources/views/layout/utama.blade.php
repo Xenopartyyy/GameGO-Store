@@ -9,6 +9,10 @@
     <link rel="stylesheet" href={{ asset('css/style.css') }}>
     <link rel="stylesheet" href={{ asset('bootstrap/bootstrap.min.css') }}>
     <link rel="icon" type="image/x-icon" href={{ asset('asset/icon/favicon.ico') }}>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500&display=swap" rel="stylesheet">
 
 
 </head>

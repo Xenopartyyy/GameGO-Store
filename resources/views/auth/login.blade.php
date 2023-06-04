@@ -9,23 +9,41 @@
     <link rel="stylesheet" href={{ asset('bootstrap/bootstrap.min.css') }}>
 
     <style>
+    @import url('https://fonts.googleapis.com/css2?family=Signika:wght@600&display=swap');
+        .main{
+            background-color: #0b2239;
+        }
+        .card{
+            color: rgb(255,72,0);
+            background-color: white;
+            font-family: 'Poppins', sans-serif;
+
+        }
+        .login{
+            font-family: 'Signika', sans-serif;
+        }
         .container-box {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
         }
+
+        .sign{
+            background-color: rgb(255,72,0);
+            color: white;
+        }
     </style>
 </head>
 
 <body>
-    <div class="container-fluid">
+    <div class="container-fluid main">
         <div class="container-box">
-            <div class="card" style="width: 400px;">
-                <div class="card-body">
+            <div class="card shadow-lg " style="width: 400px;">
+                <div class="card-body kartu">
                     <form action="{{ route('loginproses') }}" method="POST">
                         @csrf
-                        <h1>Login</h1>
+                        <h1 class="login">Login</h1>
                         <div class="mb-3">
                             <label class="form-label" for="inputEmail">Email</label>
                             <input type="email" class="form-control" id="inputEmail" name="email"
@@ -46,7 +64,7 @@
                                 <p>Belum punya akun? <a href="{{ route('register') }}">Daftar disini!</a></p>
                             </div>
                             <div class="col-6 text-end">
-                                <button type="submit" class="btn btn-primary">Sign in</button>
+                                <button type="submit" class="btn sign btn-primary">Sign in</button>
                             </div>
                         </div>
                     </form>

@@ -45,7 +45,7 @@ class PenggunaController extends Controller
             'nama' => 'required',
             'role' => 'required',
             'avatar' => 'nullable|file',
-            'phone' => 'required|numeric|size:11',
+            'phone' => 'required|numeric',
             'address' => 'required|min:5',
             'password' => 'required',
         ]);
@@ -103,7 +103,7 @@ class PenggunaController extends Controller
             'nama' => 'required',
             'role' => 'required',
             'avatar' => 'nullable|file',
-            'phone' => 'required|numeric|size:11',
+            'phone' => 'required|numeric',
             'address' => 'required|min:5',
             'password' => 'required',
         ]);

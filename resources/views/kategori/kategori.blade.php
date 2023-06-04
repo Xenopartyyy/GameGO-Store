@@ -3,7 +3,6 @@
 @section('kontendashboard')
     
 {{-- dashboard content start --}}
-<div class="col-10">
     <div class="container">
         <h1 class="text-center my-5">Data Kategori</h1>
             <table class="table table-striped table-hover">
@@ -51,7 +50,6 @@
                 </tbody>
             </table>
     </div>
-</div>
 {{-- dashboard content ends --}}
 
 @endsection
