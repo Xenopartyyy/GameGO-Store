@@ -36,7 +36,7 @@
         <div>&nbsp;</div>
         <div>&nbsp;</div>
         <div class="sapa">
-            <p style="color : white; font-family: 'Rubik', sans-serif;">Halo, <br>  {{ Auth::user()->nama }}</p>
+            <p style="color : white; font-size:12px">Halo, <br>  {{ Auth::user()->nama }}</p>
         </div>
         <div>&nbsp;</div>
         <div>&nbsp;</div>

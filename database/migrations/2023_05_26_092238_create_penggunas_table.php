@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('email');
             $table->string('nama');
-            $table->enum('role', ['admin','staff']);
-            $table->string('avatar');
+            $table->enum('role', ['admin','staff','user'])->default('user');
+            $table->string('avatar')->nullable();
             $table->string('phone');
             $table->text('address');
             $table->string('password');

@@ -46,7 +46,7 @@ data-bs-slide="next">
 <div class="container">
     <h1 class="text-center">Daftar Produk</h1>
     <br>
-        <div class="row">
+    <div class="row">
             @foreach ($produk as $item)
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card">
@@ -58,9 +58,9 @@ data-bs-slide="next">
                 </div>
             </div>
             @endforeach
-        </div>
     </div>
-    product end
+</div>
+    {{-- product end --}}
     
     
     @endsection
