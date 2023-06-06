@@ -7,6 +7,24 @@
 
             <form action="/produk/store" method="POST">
                 @csrf
+
+                <div class="form-group">
+                    <label for="kategori_id">Kategori</label>
+
+                    <select name="kategori_id" class="form-control @error('kategori_id') is-invalid @enderror">
+                        @foreach ($kategoris as $kategori)
+                            <option value="{{ $kategori->id }}">{{ $kategori->kategori }}</option>
+                        @endforeach 
+                    </select>
+                    
+                    @error('kategori_id')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
+
+
                 <div class="form-group">
                     <label for="nama">Nama Produk</label>
                     <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{ old('nama') }}">
@@ -31,16 +49,6 @@
                     <label for="harga">Harga</label>
                     <input type="text" class="form-control @error('harga') is-invalid @enderror" name="harga" value="{{ old('harga') }}">
                     @error('harga')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </div>
-
-                <div class="form-group">
-                    <label for="status">Status Barang</label>
-                    <input type="text" class="form-control @error('status') is-invalid @enderror" name="status" value="{{ old('status') }}">
-                    @error('status')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>

@@ -10,10 +10,10 @@
                     <tr>
                         <th>No.</th>
                         <th>Aksi</th>
+                        <th>ID kategori</th>
                         <th>Nama</th>
                         <th>Deskripsi</th>
                         <th>Harga</th>
-                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,6 +44,7 @@
                                     @endif
                                 </div>
                             </td>
+                            <td>{{ $prdk['kategori_id'] }}</td>
                             <td>{{ $prdk['nama'] }}</td>
                             <td>{{ $prdk['deskripsi'] }}</td>
                             <td>{{ $prdk['harga'] }}</td>

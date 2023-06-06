@@ -10,6 +10,7 @@
                     <tr>
                         <th>No.</th>
                         <th>Aksi</th>
+                        <th>ID</th>
                         <th>Nama Kategori</th>
                     </tr>
                 </thead>
@@ -17,7 +18,7 @@
                 @if (Auth::user()->role != 'admin')
                     
                 @else
-                    <a href='kategori/create' class="btn btn-primary">Tambah Produk</a>
+                    <a href='kategori/create' class="btn btn-primary">Tambah Kategori</a>
                 @endif
                     @foreach($kategori as $ktgr)
                         <tr>
@@ -41,6 +42,7 @@
                                     @endif
                                 </div>
                             </td>
+                            <td>{{ $ktgr['id'] }}</td>
                             <td>{{ $ktgr['kategori'] }}</td>
 
                         </tr>
