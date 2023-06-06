@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Produk;
+use App\Models\Kategori;
 use App\Http\Requests\StoreProdukRequest;
 use App\Http\Requests\UpdateProdukRequest;
 
@@ -26,8 +27,10 @@ class ProdukController extends Controller
      */
     public function create()
     {
-        return view('produk.create');
+        $kategoris = Kategori::all();
+        return view('produk.create', compact('kategoris'));
     }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -37,15 +40,22 @@ class ProdukController extends Controller
      */
     public function store(StoreProdukRequest $request)
     {
-        $request->validate([
-            'nama' => 'required|min:5|max:100',
-            'deskripsi' => 'required',
-            'harga' => 'required|numeric',
-            'status' => 'required'
-        ]);
+    $request->validate([
+        'nama' => 'required|min:5|max:100',
+        'deskripsi' => 'required',
+        'harga' => 'required|numeric',
+        'kategori_id' => 'required|exists:kategoris,id', // validasi eksistensi kategori_id
+    ]);
 
-        Produk::create($request->except(['_token','submit']));
-        return redirect('/produk');
+    $produk = new Produk();
+    $produk->nama = $request->input('nama');
+    $produk->deskripsi = $request->input('deskripsi');
+    $produk->harga = $request->input('harga');
+    $produk->kategori_id = $request->input('kategori_id'); // menyimpan kategori_id
+
+    $produk->save();
+
+    return redirect('/produk');
     }
 
     /**
@@ -68,8 +78,8 @@ class ProdukController extends Controller
     public function edit($id)
     {
         $produk = Produk::find($id);
-        return view('produk.edit', compact('produk'));
-        // return redirect('/produk');
+        $kategoris = Kategori::all();
+        return view('produk.edit', compact('produk', 'kategoris'));
     }
 
     /**
@@ -80,18 +90,24 @@ class ProdukController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateProdukRequest $request, $id)
-    {
-        $request->validate([
-            'nama' => 'required|min:5|max:100',
-            'deskripsi' => 'required',
-            'harga' => 'required|numeric',
-            'status' => 'required'
-        ]);
+{
+    $request->validate([
+        'nama' => 'required|min:5|max:100',
+        'deskripsi' => 'required',
+        'harga' => 'required|numeric',
+        'kategori_id' => 'required|exists:kategoris,id', // validasi eksistensi kategori_id
+    ]);
 
-        $produk = Produk::findOrFail($id);
-        $produk->update($request->except(['_token','submit']));
-        return redirect('/produk');
-    }
+    $produk = Produk::findOrFail($id);
+    $produk->nama = $request->input('nama');
+    $produk->deskripsi = $request->input('deskripsi');
+    $produk->harga = $request->input('harga');
+    $produk->kategori_id = $request->input('kategori_id'); // menyimpan kategori_id
+
+    $produk->save();
+
+    return redirect('/produk');
+}
      
 
     /**
