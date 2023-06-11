@@ -12,7 +12,8 @@ class RegisterController extends Controller
         return view('auth.register');
     }
 
-    public function registerproses(StorePenggunaRequest $request){
+    public function registerproses(StorePenggunaRequest $request)
+    {
         $request->validate([
             'email' => 'required|email:rfc,dns|min:7',
             'nama' => 'required',
@@ -22,26 +23,30 @@ class RegisterController extends Controller
             'password' => 'required',
         ]);
 
+        // Default avatar file name
+        $defaultAvatar = 'avatardefault.png';
+
         $pengguna = Pengguna::create([
             'nama' => $request->nama,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'phone' => $request->phone,
             'address' => $request->address,
-            'avatar' => $request->avatar,
         ]);
 
         if ($request->hasFile('avatar') && $request->file('avatar')->isValid()) {
             $file = $request->file('avatar');
             $filename = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('storage/avatar'), $filename);
-
-            $pengguna->avatar = $filename;
-            $pengguna->save();
+        } else {
+            // If no avatar is provided, use the default avatar
+            $filename = $defaultAvatar;
         }
+
+        $pengguna->avatar = $filename;
+        $pengguna->save();
 
         return redirect('login')->with('success', 'Registrasi Berhasil!');
 
     }
-
 }

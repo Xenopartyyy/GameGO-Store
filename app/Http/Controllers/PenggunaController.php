@@ -8,7 +8,7 @@ use App\Http\Requests\UpdatePenggunaRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Hash;
 class PenggunaController extends Controller
 {
     /**
@@ -43,22 +43,36 @@ class PenggunaController extends Controller
         $request->validate([
             'email' => 'required|email:rfc,dns|min:7',
             'nama' => 'required',
-            'role' => 'required',
             'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'phone' => 'required|numeric',
             'address' => 'required|min:5',
             'password' => 'required',
         ]);
 
-        $pengguna = Pengguna::create($request->except(['_token', 'submit']));
+        // Default avatar file name
+        $defaultAvatar = 'avatardefault.png';
+
+        $pengguna = Pengguna::create([
+            'email' => 'required|email:rfc,dns|min:7',
+            'nama' => 'required',
+            'role' => 'required',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'phone' => 'required|numeric',
+            'address' => 'required|min:5',
+            'password' => Hash::make($request->password)
+        ]);
 
         if ($request->hasFile('avatar') && $request->file('avatar')->isValid()) {
             $file = $request->file('avatar');
             $filename = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('storage/avatar'), $filename);
-            $pengguna->avatar = $filename;
-            $pengguna->save();
+        } else {
+            // If no avatar is provided, use the default avatar
+            $filename = $defaultAvatar;
         }
+
+        $pengguna->avatar = $filename;
+        $pengguna->save();
 
         return redirect('/pengguna');
     }
@@ -104,7 +118,7 @@ class PenggunaController extends Controller
             'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'phone' => 'required|numeric',
             'address' => 'required|min:5',
-            'password' => 'required',
+            'password' => Hash::make($request->password)
         ]);
 
         $pengguna = Pengguna::findOrFail($id);
