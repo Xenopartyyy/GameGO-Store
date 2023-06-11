@@ -10,7 +10,7 @@
                   <a b href="{{ url('/') }}">Home</a>
               </li>
               <li>
-                  <a href="{{ url('/') }}">Products</a>
+                  <a href="/allproduk">Products</a>
               </li>
               <li>
                   <a href="{{ url('/dashboard') }}">Dashboard</a>
@@ -28,9 +28,11 @@
 
       </nav>
   </div>
+
+
   <div class="header-right">
         @if(Auth::user())
-        <img class="rounded" style="width:40px"src="storage/avatar/{{ Auth::user()->avatar }}" alt="profileImg">
+        <img class="rounded" style="width:40px"src="storage/avatar/{{ Auth::user()->avatar }}">
         <div>&nbsp;</div>
         <div>&nbsp;</div>
         <div>&nbsp;</div>

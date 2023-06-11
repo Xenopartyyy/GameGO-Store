@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Pengguna;
+use App\Models\Slider;
+use App\Models\Produk;
 
 use Illuminate\Http\Request;
 
@@ -10,118 +11,46 @@ class MainController extends Controller
 
     public function index()
     {
-        $produk = [
-            [
-            
-            'nama' => 'Produk 1',
-            'deskripsi' => 'Deskripsi produk 1' 
-        
-            ],
-
-            [
-            
-                'nama' => 'Produk 2',
-                'deskripsi' => 'Deskripsi produk 2' 
-            
-            ],
-
-            [
-            
-                'nama' => 'Produk 3',
-                'deskripsi' => 'Deskripsi produk 3' 
-            
-            ],
-
-            [
-            
-                'nama' => 'Produk 4',
-                'deskripsi' => 'Deskripsi produk 4' 
-            
-            ],
-
-            [
-            
-                'nama' => 'Produk 5',
-                'deskripsi' => 'Deskripsi produk 5' 
-            
-            ],
-
-            [
-            
-                'nama' => 'Produk 6',
-                'deskripsi' => 'Deskripsi produk 6' 
-            
-            ]
-                
-
-            ];
-
-        return view("landing", compact('produk'));
+        $produk = Produk::all();
+        $slide = Slider::all();
+        return view("landing", compact('produk', 'slide'));
     }
+    
+    
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        //
+        $produk = Produk::find($id);
+        return view("detail", compact('produk'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function allproduk(Request $request)
     {
-        //
+        $nama = $request->input('nama');
+        $harga_min = $request->input('harga_min');
+        $harga_max = $request->input('harga_max');
+    
+        $produk = Produk::query();
+    
+        if ($nama) {
+            $produk->whereRaw("LOWER(nama) LIKE ?", ['%' . strtolower($nama) . '%']);
+        }
+    
+        if ($harga_min) {
+            $produk->whereRaw("CAST(harga AS UNSIGNED) >= ?", [$harga_min]);
+        }
+    
+        if ($harga_max) {
+            $produk->whereRaw("CAST(harga AS UNSIGNED) <= ?", [$harga_max]);
+        }
+    
+        $produk = $produk->get();
+    
+        return view('allproduk', compact('produk'));
     }
+    
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+    
+
 }

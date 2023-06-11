@@ -31,13 +31,23 @@ class SliderController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'nama' => 'required|unique:sliders,nama|max:255|min:5',
-            'url' => 'required|min:5',
-            'banner' => 'required'
+            'banner' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
         
-        Slider::create($request->except(['_token', 'submit']));
+        $slider = new Slider();
+        $slider->nama = $validatedData['nama'];
+        
+        if ($request->hasFile('banner') && $request->file('banner')->isValid()) {
+            $file = $request->file('banner');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('storage/banner'), $filename);
+            $slider->banner = $filename;
+        }
+    
+        $slider->save();
+
         return redirect('/slider');
     }
 
@@ -73,16 +83,26 @@ class SliderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'nama' => 'required|unique:sliders,nama|max:255|min:5',
-            'url' => 'required|min:5',
-            'banner' => 'required'
+        $validatedData = $request->validate([
+            'nama' => 'required|max:255|min:5',
+            'banner' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
-        
+    
         $slider = Slider::findOrFail($id);
-        $slider->update($request->except(['_token', 'submit']));
+        $slider->nama = $validatedData['nama'];
+    
+        if ($request->hasFile('banner') && $request->file('banner')->isValid()) {
+            $file = $request->file('banner');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('storage/banner'), $filename);
+            $slider->banner = $filename;
+        }
+    
+        $slider->save();
+    
         return redirect('/slider');
     }
+    
 
     /**
      * Remove the specified resource from storage.

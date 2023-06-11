@@ -40,23 +40,32 @@ class ProdukController extends Controller
      */
     public function store(StoreProdukRequest $request)
     {
-    $request->validate([
-        'nama' => 'required|min:5|max:100',
-        'deskripsi' => 'required',
-        'harga' => 'required|numeric',
-        'kategori_id' => 'required|exists:kategoris,id', // validasi eksistensi kategori_id
-    ]);
-
-    $produk = new Produk();
-    $produk->nama = $request->input('nama');
-    $produk->deskripsi = $request->input('deskripsi');
-    $produk->harga = $request->input('harga');
-    $produk->kategori_id = $request->input('kategori_id'); // menyimpan kategori_id
-
-    $produk->save();
-
-    return redirect('/produk');
+        $validatedData = $request->validate([
+            'nama' => 'required|min:5|max:100',
+            'deskripsi' => 'required',
+            'harga' => 'required|numeric',
+            'kategori_id' => 'required|exists:kategoris,id',
+            'avatar' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+    
+        $produk = new Produk();
+        $produk->nama = $validatedData['nama'];
+        $produk->deskripsi = $validatedData['deskripsi'];
+        $produk->harga = $validatedData['harga'];
+        $produk->kategori_id = $validatedData['kategori_id'];
+    
+        if ($request->hasFile('avatar') && $request->file('avatar')->isValid()) {
+            $file = $request->file('avatar');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('storage/avatarproduk'), $filename);
+            $produk->avatar = $filename;
+        }
+    
+        $produk->save();
+    
+        return redirect('/produk');
     }
+    
 
     /**
      * Display the specified resource.
@@ -90,24 +99,33 @@ class ProdukController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateProdukRequest $request, $id)
-{
-    $request->validate([
-        'nama' => 'required|min:5|max:100',
-        'deskripsi' => 'required',
-        'harga' => 'required|numeric',
-        'kategori_id' => 'required|exists:kategoris,id', // validasi eksistensi kategori_id
-    ]);
-
-    $produk = Produk::findOrFail($id);
-    $produk->nama = $request->input('nama');
-    $produk->deskripsi = $request->input('deskripsi');
-    $produk->harga = $request->input('harga');
-    $produk->kategori_id = $request->input('kategori_id'); // menyimpan kategori_id
-
-    $produk->save();
-
-    return redirect('/produk');
-}
+    {
+        $validatedData = $request->validate([
+            'nama' => 'required|min:5|max:100',
+            'deskripsi' => 'required',
+            'harga' => 'required|numeric',
+            'kategori_id' => 'required|exists:kategoris,id',
+            'avatar' => 'image|mimes:jpeg,png,jpg,gif|max:2048', 
+        ]);
+    
+        $produk = Produk::findOrFail($id);
+        $produk->nama = $validatedData['nama'];
+        $produk->deskripsi = $validatedData['deskripsi'];
+        $produk->harga = $validatedData['harga'];
+        $produk->kategori_id = $validatedData['kategori_id'];
+    
+        if ($request->hasFile('avatar') && $request->file('avatar')->isValid()) {
+            $file = $request->file('avatar');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('storage/avatarproduk'), $filename);
+            $produk->avatar = $filename;
+        }
+    
+        $produk->save();
+    
+        return redirect('/produk');
+    }
+    
      
 
     /**

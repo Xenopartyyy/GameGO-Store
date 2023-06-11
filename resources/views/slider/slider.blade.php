@@ -10,7 +10,6 @@
                         <th>No.</th>
                         <th>Aksi</th>
                         <th>Nama Slider</th>
-                        <th>Url</th>
                         <th>Banner</th>
                     </tr>
                 </thead>
@@ -43,8 +42,7 @@
                                 </div>
                             </td>
                             <td>{{ $sldr['nama'] }}</td>
-                            <td>{{ $sldr['url'] }}</td>
-                            <td><img src="{{ asset('asset/Slider/' . $sldr['banner']) }}" style="width: 40px"></td>
+                            <td><img src="{{ asset('storage/banner/' . $sldr['banner']) }}" style="width: 40px"></td>
                         </tr>
                     @endforeach
                 </tbody>

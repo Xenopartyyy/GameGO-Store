@@ -19,18 +19,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="url">Url Slider</label>
-                    <input type="text" class="form-control @error('url') is-invalid @enderror" name="url" value="{{ old('url', $slider->url) }}">
-                    @error('url')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </div>
-
-                <div class="form-group">
-                    <label for="banner">Banner Pengguna</label>
-                    <input type="file" class="form-control @error('banner') is-invalid @enderror" name="banner" value="{{ old('banner',$slider->banner) }}">
+                    <label for="banner">Banner</label>
+                    <input type="file" class="form-control @error('banner') is-invalid @enderror" name="banner">
                     @error('banner')
                     <div class="invalid-feedback">
                         {{ $message }}

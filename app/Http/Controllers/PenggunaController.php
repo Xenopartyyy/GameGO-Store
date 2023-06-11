@@ -44,7 +44,7 @@ class PenggunaController extends Controller
             'email' => 'required|email:rfc,dns|min:7',
             'nama' => 'required',
             'role' => 'required',
-            'avatar' => 'nullable|file',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'phone' => 'required|numeric',
             'address' => 'required|min:5',
             'password' => 'required',
@@ -56,7 +56,6 @@ class PenggunaController extends Controller
             $file = $request->file('avatar');
             $filename = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('storage/avatar'), $filename);
-
             $pengguna->avatar = $filename;
             $pengguna->save();
         }
@@ -102,7 +101,7 @@ class PenggunaController extends Controller
             'email' => 'required|email:rfc,dns|min:7',
             'nama' => 'required',
             'role' => 'required',
-            'avatar' => 'nullable|file',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'phone' => 'required|numeric',
             'address' => 'required|min:5',
             'password' => 'required',

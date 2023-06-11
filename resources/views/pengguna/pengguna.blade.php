@@ -47,8 +47,8 @@
                             <td>{{ $pggn['email'] }}</td>
                             <td>{{ $pggn['nama'] }}</td>
                             <td>{{ $pggn['role'] }}</td>
-                            <td>
-                                <img src="{{ asset('storage/Avatar/' . $pggn['avatar']) }}" style="width: 40px">                                <td>{{ $pggn['phone'] }}</td>
+                            <td><img src="{{ asset('storage/Avatar/' . $pggn['avatar']) }}" style="width: 40px"></td>                          
+                            <td>{{ $pggn['phone'] }}</td>
                             <td>{{ $pggn['address'] }}</td>
                         </tr>
                         

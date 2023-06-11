@@ -11,6 +11,7 @@
                         <th>No.</th>
                         <th>Aksi</th>
                         <th>ID kategori</th>
+                        <th>Avatar</th>
                         <th>Nama</th>
                         <th>Deskripsi</th>
                         <th>Harga</th>
@@ -45,6 +46,7 @@
                                 </div>
                             </td>
                             <td>{{ $prdk['kategori_id'] }}</td>
+                            <td><img src="{{ asset('storage/avatarproduk/' . $prdk['avatar']) }}" style="width: 40px"></td>
                             <td>{{ $prdk['nama'] }}</td>
                             <td>{{ $prdk['deskripsi'] }}</td>
                             <td>{{ $prdk['harga'] }}</td>

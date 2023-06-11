@@ -17,7 +17,7 @@ class CreateProduksTable extends Migration
             $table->id();
             $table->foreignId('kategori_id')->constrained('kategoris');
             $table->string('nama');
-            $table->string('deskripsi');
+            $table->text('deskripsi');
             $table->string('harga');
             $table->timestamps();
         });

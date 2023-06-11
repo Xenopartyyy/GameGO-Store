@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CRUDController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProdukController;
@@ -26,12 +25,18 @@ use App\Http\Controllers\SliderController;
 */
 
 
-Route::get('/create', [CRUDController::class, 'create']);
-Route::get('/read', [CRUDController::class, 'readUser']);
-Route::get('/update', [CRUDController::class, 'update']);
-Route::get('/detail', [CRUDController::class, 'detail']);
-Route::get('/',[MainController::class,'index']);
 Route::get('/dashboard', [DashboardController::class, 'index']) -> middleware('auth');
+
+
+
+Route::get('/', [MainController::class, 'index']);
+Route::get('/showproduct/{id}', [MainController::class, 'show']) -> middleware('auth');
+Route::get('/allproduk', [MainController::class, 'allproduk'])->name('produk.all') -> middleware('auth');
+Route::get('/allproduk/filter', [MainController::class, 'allproduk'])->name('produk.filter') -> middleware('auth');
+
+
+
+
 
 Route::prefix('produk')->group(function () {
     Route::get('/', [ProdukController::class, 'index']) -> middleware('auth') ;

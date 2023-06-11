@@ -114,6 +114,19 @@ header .header-right .hamburger div {
 .header-right .sapa{
     font-family: 'Rubik', sans-serif;
 }
+
+.produk{
+    background-color: rgb(243, 243, 243);
+}
+
+.cardpro{
+    border-radius: 10px;
+}
+
+.cardpro img{
+    border-radius: 50px;
+
+}
 @media only screen and (max-width: 1000px) {
     header {
         padding: 0 20px;

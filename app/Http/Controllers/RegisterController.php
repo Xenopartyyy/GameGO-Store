@@ -16,7 +16,7 @@ class RegisterController extends Controller
         $request->validate([
             'email' => 'required|email:rfc,dns|min:7',
             'nama' => 'required',
-            'avatar' => 'nullable|file',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'phone' => 'required|numeric',
             'address' => 'required|min:5',
             'password' => 'required',

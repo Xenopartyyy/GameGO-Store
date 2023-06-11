@@ -11,7 +11,6 @@
     <link rel="icon" type="image/x-icon" href={{ asset('asset/icon/favicon.ico') }}>
     <link rel="stylesheet" href={{ asset('css/boxicon/css/boxicons.min.css') }}>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.datatables.net/v/bs5/dt-1.13.4/b-2.3.6/b-html5-2.3.6/date-1.4.1/sb-1.4.2/sp-2.1.2/sl-1.6.2/datatables.min.css" rel="stylesheet"/>
 
 </head>
 
