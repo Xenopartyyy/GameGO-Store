@@ -6,6 +6,8 @@ use App\Models\Produk;
 use App\Models\Kategori;
 use App\Http\Requests\StoreProdukRequest;
 use App\Http\Requests\UpdateProdukRequest;
+use Illuminate\Support\Facades\File;
+
 
 class ProdukController extends Controller
 {
@@ -137,7 +139,20 @@ class ProdukController extends Controller
     public function destroy($id)
     {
         $produk = Produk::findOrFail($id);
+    
+        // Hapus foto dari folder storage
+        $filePath = public_path('storage/avatarproduk/' . $produk->avatar);
+        if (File::exists($filePath)) {
+            File::delete($filePath);
+        }
+    
         $produk->delete();
+    
         return redirect('/produk');
     }
+    
+    
+    
+    
+    
 }

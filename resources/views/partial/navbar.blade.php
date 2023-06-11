@@ -32,19 +32,9 @@
 
   <div class="header-right">
         @if(Auth::user())
-        <img class="rounded" style="width:40px"src="storage/avatar/{{ Auth::user()->avatar }}">
-        <div>&nbsp;</div>
-        <div>&nbsp;</div>
-        <div>&nbsp;</div>
-        <div>&nbsp;</div>
-        <div class="sapa">
-            <p style="color : white; font-size:12px">Halo, <br>  {{ Auth::user()->nama }}</p>
+        <div class="sapa mx-3 mt-3">
+            <p style="color : white; font-size:12px">Halo, {{ Auth::user()->nama }}</p>
         </div>
-        <div>&nbsp;</div>
-        <div>&nbsp;</div>
-        <div>&nbsp;</div>
-        <div>&nbsp;</div>
-        <div>&nbsp;</div>
         <div class="logout">
             <a href="{{ url('/logout') }}" style="background-color: red">Logout</a>
         </div>

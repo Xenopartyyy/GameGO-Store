@@ -6,7 +6,7 @@ use App\Models\Pengguna;
 use App\Http\Requests\StorePenggunaRequest;
 use App\Http\Requests\UpdatePenggunaRequest;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
 
 class PenggunaController extends Controller
@@ -131,9 +131,21 @@ class PenggunaController extends Controller
     public function destroy($id)
     {
         $pengguna = Pengguna::findOrFail($id);
-        Storage::delete('storage/avatar/' . $pengguna->avatar);
-        
+    
+        // Hapus foto dari folder storage
+        if ($pengguna->avatar) {
+            $filePath = public_path('storage/avatar/' . $pengguna->avatar);
+            if (File::exists($filePath)) {
+                File::delete($filePath);
+            }
+        }
+    
         $pengguna->delete();
+    
         return redirect('/pengguna');
     }
+    
+    
+    
+    
 }

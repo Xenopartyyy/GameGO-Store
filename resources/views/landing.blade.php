@@ -17,17 +17,9 @@
           @foreach ($slide as $item)
           <div class="carousel-item active">
             <img src="{{ asset('storage/banner/' . $item['banner']) }}"
-            alt="...">
+            alt="..." style="object-fit: cover; width: 100%; height: 100%;">
         </div>
           @endforeach
-            {{-- <div class="carousel-item">
-                <img src={{ asset('asset/Slider/slide2.jpg') }} class="d-block w-100"
-                alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src={{ asset('asset/Slider/slide3.jpg') }} class="d-block w-100"
-                alt="...">
-            </div> --}}
         </div> 
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
@@ -115,19 +107,16 @@ data-bs-slide="next">
             class="text-center text-lg-start text-white"
             style="background-color: rgb(11,34,57)"
             >
-      <!-- Grid container -->
       <div class="container p-4 pb-0">
         <!-- Section: Links -->
         <section class="">
-          <!--Grid row-->
           <div class="row">
-            <!-- Grid column -->
             <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
             <div class="logo fs-3">
                 </h1>Game<span>GO</span></h1>
             </div>
               <p>
-                GameGO merupakan marketplace belanja online yang menjual berbagai perlatan game yang berdiri sejak 2022 
+                GameGO merupakan marketplace belanja online yang menjual berbagai perlatan game yang berdiri tahun 2023 
               </p>
             </div>
             <!-- Grid column -->
@@ -135,43 +124,37 @@ data-bs-slide="next">
             <hr class="w-100 clearfix d-md-none" />
   
             <!-- Grid column -->
-            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
-              <h6 class="text-uppercase mb-4 font-weight-bold">Products</h6>
-              <p>
-                <a class="text-white">MDBootstrap</a>
-              </p>
-              <p>
-                <a class="text-white">MDWordPress</a>
-              </p>
-              <p>
-                <a class="text-white">BrandFlow</a>
-              </p>
-              <p>
-                <a class="text-white">Bootstrap Angular</a>
-              </p>
+            <div class="col-md-2 col-lg-3 col-xl-3 mx-auto mt-3">
+              <h6 class="text-uppercase mb-4 font-weight-bold">Sosial Media</h6>
+              <a
+                 class="btn btn-outline-light btn-floating m-1"
+                 class="text-white"
+                 role="button">
+                <i class='bx bxl-facebook-circle'></i></a>
+  
+              <a
+                 class="btn btn-outline-light btn-floating m-1"
+                 class="text-white"
+                 role="button"
+                 ><i class='bx bxl-twitter' ></i></a>
+  
+              <a
+                 class="btn btn-outline-light btn-floating m-1"
+                 class="text-white"
+                 role="button"
+                 ><i class='bx bxl-google' ></i></i
+                ></a>
+  
+              <a
+                 class="btn btn-outline-light btn-floating m-1"
+                 class="text-white"
+                 role="button"
+                 ><i class='bx bxl-instagram' ></i></i
+                ></a>
             </div>
             <!-- Grid column -->
   
             <hr class="w-100 clearfix d-md-none" />
-  
-            <!-- Grid column -->
-            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
-              <h6 class="text-uppercase mb-4 font-weight-bold">
-                Useful links
-              </h6>
-              <p>
-                <a class="text-white">Your Account</a>
-              </p>
-              <p>
-                <a class="text-white">Become an Affiliate</a>
-              </p>
-              <p>
-                <a class="text-white">Shipping Rates</a>
-              </p>
-              <p>
-                <a class="text-white">Help</a>
-              </p>
-            </div>
   
             <!-- Grid column -->
             <hr class="w-100 clearfix d-md-none" />
@@ -187,65 +170,18 @@ data-bs-slide="next">
             <!-- Grid column -->
           </div>
           <!--Grid row-->
+
+
         </section>
-        <!-- Section: Links -->
   
         <hr class="my-3">
   
         <!-- Section: Copyright -->
-        <section class="p-3 pt-0">
-          <div class="row d-flex align-items-center">
-            <!-- Grid column -->
-            <div class="col-md-7 col-lg-8 text-center text-md-start">
-              <!-- Copyright -->
-              <div class="p-3">
-                © 2023 Copyright: PT. GameGO Store
-              </div>
-              <!-- Copyright -->
+        <section class="p-3 pt-0 text-center">
+            <div class="text-center ">
+                © 2023 PT. GameGO Gemilang Cahaya
             </div>
-            <!-- Grid column -->
-  
-            <!-- Grid column -->
-            <div class="col-md-5 col-lg-4 ml-lg-0 text-center text-md-end">
-              <!-- Facebook -->
-              <a
-                 class="btn btn-outline-light btn-floating m-1"
-                 class="text-white"
-                 role="button">
-                <i class='bx bxl-facebook-circle'></i></a>
-  
-              <!-- Twitter -->
-              <a
-                 class="btn btn-outline-light btn-floating m-1"
-                 class="text-white"
-                 role="button"
-                 ><i class='bx bxl-twitter' ></i></a>
-  
-              <!-- Google -->
-              <a
-                 class="btn btn-outline-light btn-floating m-1"
-                 class="text-white"
-                 role="button"
-                 ><i class='bx bxl-google' ></i></i
-                ></a>
-  
-              <!-- Instagram -->
-              <a
-                 class="btn btn-outline-light btn-floating m-1"
-                 class="text-white"
-                 role="button"
-                 ><i class='bx bxl-instagram' ></i></i
-                ></a>
-            </div>
-            <!-- Grid column -->
-          </div>
         </section>
-        <!-- Section: Copyright -->
       </div>
-      <!-- Grid container -->
     </footer>
-    <!-- Footer -->
-    <!-- End of .container -->
-    <!-- Footer -->
-{{-- Footer End --}}
-    @endsection
+@endsection

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Slider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+
 
 class SliderController extends Controller
 {
@@ -33,7 +35,7 @@ class SliderController extends Controller
     {
         $validatedData = $request->validate([
             'nama' => 'required|unique:sliders,nama|max:255|min:5',
-            'banner' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+            'banner' => 'required|image|mimes:jpeg,png,jpg,gif|max:4096'
         ]);
         
         $slider = new Slider();
@@ -85,7 +87,7 @@ class SliderController extends Controller
     {
         $validatedData = $request->validate([
             'nama' => 'required|max:255|min:5',
-            'banner' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+            'banner' => 'required|image|mimes:jpeg,png,jpg,gif|max:4096'
         ]);
     
         $slider = Slider::findOrFail($id);
@@ -113,7 +115,15 @@ class SliderController extends Controller
     public function destroy($id)
     {
         $slider = Slider::findOrFail($id);
+    
+        // Hapus foto dari folder storage
+        $filePath = public_path('storage/banner/' . $slider->banner);
+        if (File::exists($filePath)) {
+            File::delete($filePath);
+        }
+    
         $slider->delete();
+    
         return redirect('/slider');
     }
 }
