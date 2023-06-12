@@ -19,8 +19,10 @@ class ProdukController extends Controller
     public function index()
     {
         $produk = Produk::all();
-        return view ('produk.produk', compact("produk"));
+        $kategori = Kategori::all();
+        return view('produk.produk', compact("produk", "kategori"));
     }
+    
 
     /**
      * Show the form for creating a new resource.

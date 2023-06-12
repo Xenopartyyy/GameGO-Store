@@ -10,7 +10,7 @@
                     <tr>
                         <th>No.</th>
                         <th>Aksi</th>
-                        <th>ID kategori</th>
+                        <th>Nama Kategori</th>
                         <th>Avatar</th>
                         <th>Nama</th>
                         <th>Deskripsi</th>
@@ -45,7 +45,7 @@
                                     @endif
                                 </div>
                             </td>
-                            <td>{{ $prdk['kategori_id'] }}</td>
+                            <td>{{ $prdk->kategori->kategori }}</td>
                             <td><img src="{{ asset('storage/avatarproduk/' . $prdk['avatar']) }}" style="width: 40px"></td>
                             <td>{{ $prdk['nama'] }}</td>
                             <td>{{ $prdk['deskripsi'] }}</td>

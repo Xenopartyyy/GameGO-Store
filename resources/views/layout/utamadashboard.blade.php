@@ -43,35 +43,3 @@
 
 
 
-
-
-
-
-
-
-{{-- <style>
-    .navside li{
-        margin: 2em 0;
-        text-decoration: none;
-    }
-
-    .sidebar .dropdown-menu{
-        margin: 0
-    }
-    .form-group {
-			margin-bottom: 1rem;
-		}
-</style> --}}
-
-    
-    {{-- @include('partial.navbardashboard') --}}
-
-{{-- <div class="container-fluid mainco">
-    <div class="row">
-
-        @include('partial.sidebar')
-
-        @yield('kontendashboard')
-        
-    </div>
-</div> --}}
