@@ -10,11 +10,17 @@
                   <a b href="{{ url('/') }}">Home</a>
               </li>
               <li>
-                  <a href="/allproduk">Products</a>
+                  <a href="/allproduk">Produk</a>
               </li>
+              @if (Auth::user()->role != 'admin' && Auth::user()->role != 'staff')
               <li>
-                  <a href="{{ url('/dashboard') }}">Dashboard</a>
+                <a href="#provide">Layanan</a>
               </li>
+              @else
+              <li>
+                <a href="{{ url('/dashboard') }}">Dashboard</a>
+              </li>
+              @endif
           </ul>
           @if(Auth::user())
             <div class="logout">

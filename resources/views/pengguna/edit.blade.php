@@ -68,16 +68,6 @@
                     @enderror
                 </div>
 
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="text" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password', $pengguna->password) }}">
-                    @error('password')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </div>
-
                 <button type="submit" name="submit" value="save" class="btn btn-primary">Simpan</button>
                 <a href={{ url('/pengguna') }} class="btn btn-danger">Batal</a>
 

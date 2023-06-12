@@ -11,8 +11,8 @@ class MainController extends Controller
 
     public function index()
     {
-        $produk = Produk::all();
-        $slide = Slider::all();
+        $produk = Produk::where('status', 'accepted')->get();
+        $slide = Slider::where('status', 'accepted')->get();
         return view("landing", compact('produk', 'slide'));
     }
     
@@ -30,7 +30,7 @@ class MainController extends Controller
         $harga_min = $request->input('harga_min');
         $harga_max = $request->input('harga_max');
     
-        $produk = Produk::query();
+        $produk = Produk::where('status', 'accepted');
     
         if ($nama) {
             $produk->whereRaw("LOWER(nama) LIKE ?", ['%' . strtolower($nama) . '%']);
@@ -48,6 +48,7 @@ class MainController extends Controller
     
         return view('allproduk', compact('produk'));
     }
+    
     
 
 

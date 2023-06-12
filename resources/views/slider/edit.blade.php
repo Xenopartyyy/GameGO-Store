@@ -28,6 +28,17 @@
                     @enderror
                 </div>
 
+                @if (Auth::user()->role = 'admin')
+                <div class="form-group">
+                    <label for="status">Status</label>
+                    <select class="form-control" name="status" >
+                        <option value="waiting" {{ $slider->status == 'waiting' ? 'selected' : '' }}>Waiting</option>
+                        <option value="accepted" {{ $slider->status == 'accepted' ? 'selected' : '' }}>Accepted</option>
+                        <option value="rejected" {{ $slider->status == 'rejected' ? 'selected' : '' }}>Rejected</option>
+                    </select>
+                </div>
+                @endif
+
                 <button type="submit" name="submit" value="save" class="btn btn-primary">Simpan</button>
                 <a href={{ url('/slider') }} class="btn btn-danger">Batal</a>
 

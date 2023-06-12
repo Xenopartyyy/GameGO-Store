@@ -40,10 +40,10 @@ Route::get('/allproduk/filter', [MainController::class, 'allproduk'])->name('pro
 
 Route::prefix('produk')->group(function () {
     Route::get('/', [ProdukController::class, 'index']) -> middleware('auth') ;
-    Route::get('/create', [ProdukController::class, 'create']) -> middleware(['auth', 'mustadmin']);
-    Route::post('/store', [ProdukController::class, 'store']) -> middleware(['auth', 'mustadmin']);
-    Route::get('/{id}/edit', [ProdukController::class, 'edit']) -> middleware(['auth', 'mustadmin']);
-    Route::put('/{id}', [ProdukController::class, 'update']) -> middleware(['auth', 'mustadmin']);
+    Route::get('/create', [ProdukController::class, 'create']) -> middleware(['auth', 'mustadminorstaff']);
+    Route::post('/store', [ProdukController::class, 'store']) -> middleware(['auth', 'mustadminorstaff']);
+    Route::get('/{id}/edit', [ProdukController::class, 'edit']) -> middleware(['auth', 'mustadminorstaff']);
+    Route::put('/{id}', [ProdukController::class, 'update']) -> middleware(['auth', 'mustadminorstaff']);
     Route::delete('/{id}', [ProdukController::class, 'destroy']) -> middleware(['auth', 'mustadmin']);
 });
 
@@ -76,10 +76,10 @@ Route::prefix('gruppengguna')->group(function () {
 
 Route::prefix('slider')->group(function () {
     Route::get('/', [SliderController::class, 'index']) -> middleware(['auth', 'mustadminorstaff']);
-    Route::get('/create', [SliderController::class, 'create']) -> middleware(['auth', 'mustadmin']);
-    Route::post('/store', [SliderController::class, 'store']) -> middleware(['auth', 'mustadmin']);
-    Route::get('/{id}/edit', [SliderController::class, 'edit']) -> middleware(['auth', 'mustadmin']);
-    Route::put('/{id}', [SliderController::class, 'update']) -> middleware(['auth', 'mustadmin']);
+    Route::get('/create', [SliderController::class, 'create']) -> middleware(['auth', 'mustadminorstaff']);
+    Route::post('/store', [SliderController::class, 'store']) -> middleware(['auth', 'mustadminorstaff']);
+    Route::get('/{id}/edit', [SliderController::class, 'edit']) -> middleware(['auth', 'mustadminorstaff']);
+    Route::put('/{id}', [SliderController::class, 'update']) -> middleware(['auth', 'mustadminorstaff']);
     Route::delete('/{id}', [SliderController::class, 'destroy']) -> middleware(['auth', 'mustadmin']);
 
 });

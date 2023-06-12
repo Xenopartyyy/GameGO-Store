@@ -15,11 +15,12 @@
                         <th>Nama</th>
                         <th>Deskripsi</th>
                         <th>Harga</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                @if (Auth::user()->role != 'admin')
-                    
+                @if (Auth::user()->role != 'admin' && Auth::user()->role != 'staff')
+                    -
                 @else
                     <a href='produk/create' class="btn btn-primary">Tambah Produk</a>
                 @endif
@@ -28,20 +29,22 @@
                             <td>{{ $loop->iteration }}</td>
                             <td class="d-flex">
                                 <div class="btn-group">
-                                    @if (Auth::user()->role != 'admin')
-                                        -
-                                    @else
-                                        <a href='' class="btn btn-primary btn-sm" data-bs-toggle="tooltip"
-                                            data-bs-placement="top" title="Detail"><i class='bx bx-show'></i></a>
+                                    @if (Auth::user()->role == 'admin')
                                         <a href='/produk/{{ $prdk->id }}/edit' class="btn btn-warning btn-sm mr-1"
                                             data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class='bx bx-edit-alt'></i></a>
                                         <form action="/produk/{{ $prdk->id }}" method="POST">
-                                            @csrf
-                                            @method('delete')
+                                        @csrf
+                                        @method('delete')
                                             <button value="delete" class="btn btn-danger btn-sm delete-link"
-                                                data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"
-                                                onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i class='bx bx-trash-alt' ></i></button>
+                                            data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"
+                                            onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i class='bx bx-trash-alt' ></i></button>
                                         </form>
+                                    
+                                    @elseif (Auth::user()->role == 'staff')
+                                        <a href='/produk/{{ $prdk->id }}/edit' class="btn btn-warning btn-sm mr-1"
+                                            data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class='bx bx-edit-alt'></i></a>
+                                    @else
+                                        -
                                     @endif
                                 </div>
                             </td>

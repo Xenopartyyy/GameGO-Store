@@ -39,7 +39,7 @@ data-bs-slide="next">
 
 {{-- providing start --}}
 <div class="my-3">
-<div class="provide">
+<div class="provide" id="provide">
     <div class="isi">
         <div class="text-center judulpro"><h2>Apa yang kami berikan?</h2></div><br><br><br>
         <div class="container text-center">

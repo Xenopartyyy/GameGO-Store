@@ -35,11 +35,13 @@ class SliderController extends Controller
     {
         $validatedData = $request->validate([
             'nama' => 'required|unique:sliders,nama|max:255|min:5',
-            'banner' => 'required|image|mimes:jpeg,png,jpg,gif|max:4096'
+            'banner' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:4096',
+            'status' => 'nullable'
         ]);
         
         $slider = new Slider();
         $slider->nama = $validatedData['nama'];
+        $slider->status = $validatedData['status'];
         
         if ($request->hasFile('banner') && $request->file('banner')->isValid()) {
             $file = $request->file('banner');
@@ -87,11 +89,14 @@ class SliderController extends Controller
     {
         $validatedData = $request->validate([
             'nama' => 'required|max:255|min:5',
-            'banner' => 'required|image|mimes:jpeg,png,jpg,gif|max:4096'
+            'banner' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:4096',
+            'status' => 'nullable'
         ]);
     
         $slider = Slider::findOrFail($id);
         $slider->nama = $validatedData['nama'];
+        $slider->status = $validatedData['status'];
+
     
         if ($request->hasFile('banner') && $request->file('banner')->isValid()) {
             $file = $request->file('banner');

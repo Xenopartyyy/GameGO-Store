@@ -19,13 +19,13 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="harga_min">Harga Minimum</label>
-                        <input type="text" class="form-control" id="harga_min" name="harga_min" placeholder="Masukkan harga minimum (tanpa titik)" value="{{ request('harga_min') }}">
+                        <input type="number" class="form-control" id="harga_min" name="harga_min" placeholder="Masukkan harga minimum (tanpa titik)" value="{{ request('harga_min') }}">
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="harga_max">Harga Maksimum</label>
-                        <input type="text" class="form-control" id="harga_max" name="harga_max" placeholder="Masukkan harga maksimum (tanpa titik)" value="{{ request('harga_max') }}">
+                        <input type="number" class="form-control" id="harga_max" name="harga_max" placeholder="Masukkan harga maksimum (tanpa titik)" value="{{ request('harga_max') }}">
                     </div>
                 </div>
             </div>

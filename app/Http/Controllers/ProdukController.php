@@ -50,6 +50,7 @@ class ProdukController extends Controller
             'harga' => 'required|numeric',
             'kategori_id' => 'required|exists:kategoris,id',
             'avatar' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'status' => 'nullable' 
         ]);
     
         $produk = new Produk();
@@ -57,6 +58,7 @@ class ProdukController extends Controller
         $produk->deskripsi = $validatedData['deskripsi'];
         $produk->harga = $validatedData['harga'];
         $produk->kategori_id = $validatedData['kategori_id'];
+        $produk->status = $validatedData['status'];
     
         if ($request->hasFile('avatar') && $request->file('avatar')->isValid()) {
             $file = $request->file('avatar');
@@ -109,7 +111,8 @@ class ProdukController extends Controller
             'deskripsi' => 'required',
             'harga' => 'required|numeric',
             'kategori_id' => 'required|exists:kategoris,id',
-            'avatar' => 'image|mimes:jpeg,png,jpg,gif|max:2048', 
+            'avatar' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'status' => 'nullable' 
         ]);
     
         $produk = Produk::findOrFail($id);
@@ -117,6 +120,7 @@ class ProdukController extends Controller
         $produk->deskripsi = $validatedData['deskripsi'];
         $produk->harga = $validatedData['harga'];
         $produk->kategori_id = $validatedData['kategori_id'];
+        $produk->status = $validatedData['status'];
     
         if ($request->hasFile('avatar') && $request->file('avatar')->isValid()) {
             $file = $request->file('avatar');
