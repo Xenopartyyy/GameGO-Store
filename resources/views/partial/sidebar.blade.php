@@ -85,7 +85,7 @@
         <!-- FOTO AUTH START -->
     <div class="profile-details">
       <div class="profile-content">
-        <img class="rounded" src="storage/avatar/{{ Auth::user()->avatar }}" alt="profileImg">
+        <img class="rounded" src="{{ asset('storage/avatar/' . Auth::user()->avatar) }}" alt="profileImg">
       </div>
       <div class="name-job text-center">
         <div class="profile_name">{{ Auth::user()->nama }}</div>
