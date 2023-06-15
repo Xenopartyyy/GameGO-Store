@@ -32,7 +32,8 @@ class ProdukController extends Controller
     public function create()
     {
         $kategoris = Kategori::all();
-        return view('produk.create', compact('kategoris'));
+        $produk = Produk::all();
+        return view('produk.create', compact('kategoris', 'produk'));
     }
     
 

@@ -1,10 +1,8 @@
-
-
 @extends('layout.utama')
 
 @section('konten')
 <section class="produk">
-    <div class="container">
+    <div class="container-fluid mx-auto">
         <br><br>
         <h1 class="text-center">Daftar Produk</h1>
         <br>
@@ -35,25 +33,25 @@
         </form>
         
         <br>
-        <div class="row">
+        <div class="row justify-content-center">
             @forelse ($produk as $item)
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card item cardpro" style="width: 300px;">
-                    <img src="{{ asset('storage/avatarproduk/' . $item['avatar']) }}">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $item['nama'] }}</h5>
-                        <p class="card-text">{{ 'Rp. ' . number_format($item['harga'], 0, ',', '.') }}</p>
-                        {{-- <p class="card-text">{{$item['harga']}}</p> --}}
-                        <a class="btn btn-primary" href="/showproduct/{{ $item->id }}">Lihat lebih lanjut</a>
+                <div class="col-lg-4 col-md-6 mb-4 text-center column mx-auto">
+                    <div class="card item cardpro text-center" style="width: 300px;">
+                        <img src="{{ asset('storage/avatarproduk/' . $item['avatar']) }}">
+                        <div class="card-body ">
+                            <h5 class="card-title">{{ $item['nama'] }}</h5>
+                            <p class="card-text">{{ 'Rp. ' . number_format($item['harga'], 0, ',', '.') }}</p>
+                            <a class="btn btn-primary" href="/showproduct/{{ $item->id }}">Lihat lebih lanjut</a>
+                        </div>
                     </div>
                 </div>
-            </div>
             @empty
-            <div class="col-md-12 text-center">
-                <p>Tidak ada produk yang sesuai dengan filter yang diberikan.</p>
-            </div>
+                <div class="col-md-12 text-center">
+                    <p>Tidak ada produk yang sesuai dengan filter yang diberikan.</p>
+                </div>
             @endforelse
         </div>
+        
     </div>
 </section>
 @endsection
