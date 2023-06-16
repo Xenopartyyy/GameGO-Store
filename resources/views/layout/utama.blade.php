@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href={{ asset('css/boxicon/css/boxicons.min.css') }}>
 </head>
 
 <body>
@@ -21,6 +21,8 @@
     @include('partial.navbar')
 
     @yield('konten')
+
+    @include('partial.footer')
 
   <script src="{{ asset('js/jquery.min.js') }}"></script>
   <script src="{{ asset('css/owlcarousel/owl.carousel.min.js') }}"></script>
