@@ -127,6 +127,19 @@ header .header-right .hamburger div {
     border-radius: 50px;
 
 }
+
+
+.bxs-star{
+    color: yellow;
+}
+
+.cardtest{
+    border: none;
+}
+
+.user-content p{
+    text-align: center;
+}
 @media only screen and (max-width: 1000px) {
     header {
         padding: 0 20px;

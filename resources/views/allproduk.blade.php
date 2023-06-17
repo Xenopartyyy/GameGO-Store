@@ -2,7 +2,7 @@
 
 @section('konten')
 <section class="produk">
-    <div class="container-fluid mx-auto">
+    <div class="container">
         <br><br>
         <h1 class="text-center">Daftar Produk</h1>
         <br>
@@ -31,26 +31,28 @@
             <button type="submit" class="btn btn-primary">Terapkan Filter</button>
             <a href="{{ route('produk.all') }}" class="btn btn-danger">Hapus Filter</a>
         </form>
-        
+    </div>
         <br>
-        <div class="row justify-content-center">
-            @forelse ($produk as $item)
-                <div class="col-lg-4 col-md-6 mb-4 text-center column mx-auto">
-                    <div class="card item cardpro text-center" style="width: 300px;">
-                        <img src="{{ asset('storage/avatarproduk/' . $item['avatar']) }}">
-                        <div class="card-body ">
-                            <h5 class="card-title">{{ $item['nama'] }}</h5>
-                            <p class="card-text">{{ 'Rp. ' . number_format($item['harga'], 0, ',', '.') }}</p>
-                            <a class="btn btn-primary" href="/showproduct/{{ $item->id }}">Lihat lebih lanjut</a>
-                        </div>
+
+    <div class="container">
+
+    <div class="row row-cols-md-2 g-4">
+         @forelse ($produk as $item)
+            <div class="col-lg-4 col-sm-12  text-center">
+                <div class="card item cardpro text-center mb-4">
+                    <img src="{{ asset('storage/avatarproduk/' . $item['avatar']) }}">
+                    <div class="card-body ">
+                        <h5 class="card-title">{{ $item['nama'] }}</h5>
+                        <p class="card-text">{{ 'Rp. ' . number_format($item['harga'], 0, ',', '.') }}</p>                            <a class="btn btn-primary" href="/showproduct/{{ $item->id }}">Lihat lebih lanjut</a>
                     </div>
                 </div>
+            </div>
             @empty
-                <div class="col-md-12 text-center">
-                    <p>Tidak ada produk yang sesuai dengan filter yang diberikan.</p>
-                </div>
-            @endforelse
-        </div>
+            <div class="col-md-12 text-center">
+                <p>Tidak ada produk yang sesuai dengan filter yang diberikan.</p>              
+            </div>
+        @endforelse
+    </div>
         
     </div>
 </section>
