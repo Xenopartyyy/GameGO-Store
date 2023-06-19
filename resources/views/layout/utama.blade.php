@@ -14,6 +14,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href={{ asset('css/boxicon/css/boxicons.min.css') }}>
+    <link rel="stylesheet" href={{ asset('css/OwlCarousel/dist/assets/owl.carousel.min.css') }}>
+    <link rel="stylesheet" href={{ asset('css/OwlCarousel/dist/assets/owl.theme.default.css') }}>
 </head>
 
 <body>
@@ -25,9 +27,29 @@
     @include('partial.footer')
 
   <script src="{{ asset('js/jquery.min.js') }}"></script>
-  <script src="{{ asset('css/owlcarousel/owl.carousel.min.js') }}"></script>
-  <script src="{{ asset('bootstrap/bootstrap.bundle.min.js') }}"></script>  
-
+  <script src={{ asset('css/OwlCarousel/dist/owl.carousel.min.js') }}></script>
+  <script>
+    $('.owl-carousel').owlCarousel({
+    loop:true,
+    margin:10,
+    responsiveClass:true,
+    responsive:{
+        0:{
+            items:1,
+            nav:true
+        },
+        600:{
+            items:3,
+            nav:false
+        },
+        1000:{
+            items:3,
+            nav:true,
+            loop:false
+        }
+    }
+})
+  </script>
 
 </body>
 

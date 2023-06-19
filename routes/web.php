@@ -6,10 +6,10 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\PenggunaController;
-use App\Http\Controllers\GruppenggunaController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SliderController;
+use App\Http\Controllers\TestimoniController;
 
 
 
@@ -36,10 +36,17 @@ Route::get('/allproduk/filter', [MainController::class, 'allproduk'])->name('pro
 
 
 
-
+Route::prefix('testimoni')->group(function () {
+    Route::get('/', [TestimoniController::class, 'index']) -> middleware(['auth', 'mustadminorstaff']);
+    Route::get('/create', [TestimoniController::class, 'create']) -> middleware(['auth', 'mustadminorstaff']);
+    Route::post('/store', [TestimoniController::class, 'store']) -> middleware(['auth', 'mustadminorstaff']);
+    Route::get('/{id}/edit', [TestimoniController::class, 'edit']) -> middleware(['auth', 'mustadminorstaff']);
+    Route::put('/{id}', [TestimoniController::class, 'update']) -> middleware(['auth', 'mustadminorstaff']);
+    Route::delete('/{id}', [TestimoniController::class, 'destroy']) -> middleware(['auth', 'mustadmin']);
+});
 
 Route::prefix('produk')->group(function () {
-    Route::get('/', [ProdukController::class, 'index']) -> middleware('auth') ;
+    Route::get('/', [ProdukController::class, 'index']) -> middleware(['auth', 'mustadminorstaff']);
     Route::get('/create', [ProdukController::class, 'create']) -> middleware(['auth', 'mustadminorstaff']);
     Route::post('/store', [ProdukController::class, 'store']) -> middleware(['auth', 'mustadminorstaff']);
     Route::get('/{id}/edit', [ProdukController::class, 'edit']) -> middleware(['auth', 'mustadminorstaff']);
@@ -65,14 +72,6 @@ Route::prefix('pengguna')->group(function () {
     Route::delete('/{id}', [PenggunaController::class, 'destroy']) -> middleware(['auth', 'mustadmin']);
 });
 
-Route::prefix('gruppengguna')->group(function () {
-    Route::get('/', [GruppenggunaController::class, 'index']) -> middleware(['auth', 'mustadminorstaff']);
-    Route::get('/create', [GruppenggunaController::class, 'create']) -> middleware(['auth', 'mustadmin']);
-    Route::post('/store', [GruppenggunaController::class, 'store']) -> middleware(['auth', 'mustadmin']);
-    Route::get('/{id}/edit', [GruppenggunaController::class, 'edit']) -> middleware(['auth', 'mustadmin']);
-    Route::put('/{id}', [GruppenggunaController::class, 'update']) -> middleware(['auth', 'mustadmin']);
-    Route::delete('/{id}', [GruppenggunaController::class, 'destroy']) -> middleware(['auth', 'mustadmin']);
-});
 
 Route::prefix('slider')->group(function () {
     Route::get('/', [SliderController::class, 'index']) -> middleware(['auth', 'mustadminorstaff']);

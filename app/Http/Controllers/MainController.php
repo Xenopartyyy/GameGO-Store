@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Slider;
 use App\Models\Produk;
+use App\Models\Testimoni;
 
 use Illuminate\Http\Request;
 
@@ -13,7 +14,8 @@ class MainController extends Controller
     {
         $produk = Produk::where('status', 'accepted')->get();
         $slide = Slider::where('status', 'accepted')->get();
-        return view("landing", compact('produk', 'slide'));
+        $testimoni = Testimoni::where('status', 'accepted')->get();
+        return view("landing", compact('produk', 'slide', 'testimoni'));
     }
     
     

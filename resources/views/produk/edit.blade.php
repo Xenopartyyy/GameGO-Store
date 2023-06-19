@@ -28,7 +28,7 @@
                 
 
                 <div class="form-group">
-                    <label for="nama">Nama</label>
+                    <label for="nama">Nama Produk</label>
                     <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{ old('nama', $produk->nama) }}">
                     @error('nama')
                     <div class="invalid-feedback">

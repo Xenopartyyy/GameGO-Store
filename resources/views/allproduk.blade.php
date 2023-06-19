@@ -39,7 +39,7 @@
     <div class="row row-cols-md-2 g-4">
          @forelse ($produk as $item)
             <div class="col-lg-4 col-sm-12  text-center">
-                <div class="card item cardpro text-center mb-4">
+                <div class="card item cardpro text-center mb-4 m-auto">
                     <img src="{{ asset('storage/avatarproduk/' . $item['avatar']) }}">
                     <div class="card-body ">
                         <h5 class="card-title">{{ $item['nama'] }}</h5>

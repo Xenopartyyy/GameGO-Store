@@ -81,6 +81,23 @@
 
       @endif
 
+
+      @if (Auth::user()->role != 'admin' && Auth::user()->role != 'staff')
+
+      @else
+      <li>
+        <div class="iocn-link">
+          <a href="{{ url('/testimoni') }}">
+            <i class='bx bx-star' ></i>
+            <span class="link_name">Testimoni</span>
+          </a>
+        </div>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="{{ url('/testimoni') }}">Testimoni</a></li>
+        </ul>
+      </li>
+      @endif
+
       <li>
         <!-- FOTO AUTH START -->
     <div class="profile-details">

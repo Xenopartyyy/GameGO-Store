@@ -104,77 +104,29 @@
     {{-- product end --}}
 
      {{-- Testimoni start --}}
-     <div class="judultest text-center mt-3"><h1>Testimoni</h1></div>
-     <div class="container mt-5 mb-5 testimoni">
-         <div class="row g-2">
-             <div class="col-md-4">
-                 <div class="cardtest p-3 text-center px-4">
- 
-                     <div class="user-image">
-                         <img src="https://i.imgur.com/PKHvlRS.jpg" class="rounded-circle" width="80">
-                     </div>
- 
-                     <div class="user-content">
-                         <h5 class="my-3">Bruce Hardy</h5>
-                         <div class="my-2">eSports Player</div>
-                         <p>Saya sangat merekomendasikan GameGO Store kepada semua gamer. Mereka tidak hanya menawarkan produk-produk terbaik, tetapi juga memberikan panduan dan rekomendasi yang sangat membantu dalam memilih peralatan gaming yang sesuai dengan kebutuhan saya. Pengalaman berbelanja di GameGO Store sangat menyenangkan!</p>
-                     </div>
- 
-                     <div class="ratings">
-                       <i class='bx bxs-star'></i>
-                       <i class='bx bxs-star'></i>
-                       <i class='bx bxs-star'></i>
-                       <i class='bx bxs-star'></i>
-                     </div>
-                 </div>
-             </div>
- 
-             <div class="col-md-4">
-                 <div class="cardtest p-3 text-center px-4">
- 
-                     <div class="user-image">
-                         <img src="https://i.imgur.com/w2CKRB9.jpg" class="rounded-circle" width="80">
-                     </div>
- 
-                     <div class="user-content">
-                         <h5 class="my-3">Mark Smith</h5>
-                         <div class="my-2">Game Developer</div>
-                         <p>GameGO Store adalah toko online favorit saya untuk peralatan gaming. Mereka selalu memiliki stok terbaru dari merek-merek ternama dan harga yang kompetitif. Selain itu, pelayanan pelanggan mereka sangat ramah dan profesional. Saya sangat senang dengan semua pembelian saya di GameGO Store.</p>
-                     </div>
- 
-                     <div class="ratings">
-                       <i class='bx bxs-star'></i>
-                       <i class='bx bxs-star'></i>
-                       <i class='bx bxs-star'></i>
-                       <i class='bx bxs-star'></i>
-                       <i class='bx bxs-star'></i>
-                     </div>
-                 </div>
-             </div>
- 
-             <div class="col-md-4">
- 
-                 <div class="cardtest p-3 text-center px-4">
- 
-                     <div class="user-image">
-                         <img src="https://i.imgur.com/ACeArwY.jpg" class="rounded-circle" width="80">
-                     </div>
- 
-                     <div class="user-content">
-                         <h5 class="my-3">Veera Duncan</h5>
-                         <div class="my-2">Game Streamer</div>
-                         <p>GameGO Store adalah tempat terbaik untuk memenuhi kebutuhan gaming saya. Mereka memiliki koleksi peralatan gaming yang lengkap dan berkualitas tinggi. Saya sangat puas dengan layanan pelanggan yang responsif dan pengiriman yang cepat. Terima kasih GameGO Store!</p>
-                     </div>
- 
-                     <div class="ratings">
-                       <i class='bx bxs-star'></i>
-                       <i class='bx bxs-star'></i>
-                       <i class='bx bxs-star'></i>
-                       <i class='bx bxs-star'></i>
-                     </div>
-                 </div>
-             </div>
-         </div>
-     </div>
+     <div class="judultest text-center mt-3">
+        <h1>Testimoni</h1>
+      </div>
+      <div class="container mt-5 mb-5">
+        <div class="row">
+          <div class="owl-carousel">
+            @foreach ($testimoni as $testi)
+            <div>
+              <div class="cardtest p-3 text-center px-4">
+                <div class="user-image text-center">
+                    <img src="{{ asset('storage/avatartesti/' . $testi['avatar']) }}" class="card-img-top rounded-circle m-auto w-50">
+                </div>
+                <div class="user-content">
+                  <h5 class="my-3">{{ $testi['nama']}}</h5>
+                  <div class="my-2">{{ $testi['profesi'] }}</div>
+                  <p>{{ $testi['testi']}}</p>
+                </div>
+              </div>
+            </div>
+            @endforeach
+          </div>
+        </div>
+      </div>
+      
      {{-- Testimoni end --}}
 @endsection
