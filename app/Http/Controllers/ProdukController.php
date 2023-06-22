@@ -113,7 +113,7 @@ class ProdukController extends Controller
             'harga' => 'required|numeric',
             'kategori_id' => 'required|exists:kategoris,id',
             'avatar' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-            'status' => 'nullable' 
+            'status' => 'nullable'
         ]);
     
         $produk = Produk::findOrFail($id);
@@ -124,6 +124,14 @@ class ProdukController extends Controller
         $produk->status = $validatedData['status'];
     
         if ($request->hasFile('avatar') && $request->file('avatar')->isValid()) {
+            // Hapus avatar sebelumnya jika ada
+            if ($produk->avatar) {
+                $avatarPath = public_path('storage/avatarproduk/') . $produk->avatar;
+                if (file_exists($avatarPath)) {
+                    unlink($avatarPath);
+                }
+            }
+    
             $file = $request->file('avatar');
             $filename = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('storage/avatarproduk'), $filename);
@@ -134,6 +142,7 @@ class ProdukController extends Controller
     
         return redirect('/produk');
     }
+    
     
      
 

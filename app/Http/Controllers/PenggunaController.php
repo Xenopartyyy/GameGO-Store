@@ -48,20 +48,20 @@ class PenggunaController extends Controller
             'address' => 'required|min:5',
             'password' => 'required',
         ]);
-
+    
         // Default avatar file name
         $defaultAvatar = 'avatardefault.png';
-
+    
         $pengguna = Pengguna::create([
-            'email' => 'required|email:rfc,dns|min:7',
-            'nama' => 'required',
-            'role' => 'required',
+            'email' => $request->email,
+            'nama' => $request->nama,
+            'role' => $request->role,
             'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'phone' => 'required|numeric',
-            'address' => 'required|min:5',
+            'phone' => $request->phone,
+            'address' => $request->address,
             'password' => Hash::make($request->password)
         ]);
-
+    
         if ($request->hasFile('avatar') && $request->file('avatar')->isValid()) {
             $file = $request->file('avatar');
             $filename = time() . '_' . $file->getClientOriginalName();
@@ -70,12 +70,13 @@ class PenggunaController extends Controller
             // If no avatar is provided, use the default avatar
             $filename = $defaultAvatar;
         }
-
+    
         $pengguna->avatar = $filename;
         $pengguna->save();
-
+    
         return redirect('/pengguna');
     }
+    
 
     /**
      * Display the specified resource.
@@ -109,32 +110,40 @@ class PenggunaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(UpdatePenggunaRequest $request, $id)
-    {   
+    {
+    $request->validate([
+        'email' => 'required|email:rfc,dns|min:7',
+        'nama' => 'required',
+        'role' => 'required',
+        'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'phone' => 'required|numeric',
+        'address' => 'required|min:5',
+        'password' => Hash::make($request->password)
+    ]);
 
-        $request->validate([
-            'email' => 'required|email:rfc,dns|min:7',
-            'nama' => 'required',
-            'role' => 'required',
-            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'phone' => 'required|numeric',
-            'address' => 'required|min:5',
-            'password' => Hash::make($request->password)
-        ]);
+    $pengguna = Pengguna::findOrFail($id);
+    $pengguna->update($request->except(['_token', 'submit']));
 
-        $pengguna = Pengguna::findOrFail($id);
-        $pengguna->update($request->except(['_token', 'submit']));
-
-        if ($request->hasFile('avatar') && $request->file('avatar')->isValid()) {
-            $file = $request->file('avatar');
-            $filename = time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path('storage/avatar'), $filename);
-
-            $pengguna->avatar = $filename;
-            $pengguna->save();
+    if ($request->hasFile('avatar') && $request->file('avatar')->isValid()) {
+        // Hapus avatar sebelumnya jika ada
+        if ($pengguna->avatar) {
+            $avatarPath = public_path('storage/avatar/') . $pengguna->avatar;
+            if (file_exists($avatarPath)) {
+                unlink($avatarPath);
+            }
         }
 
-        return redirect('/pengguna');
+        $file = $request->file('avatar');
+        $filename = time() . '_' . $file->getClientOriginalName();
+        $file->move(public_path('storage/avatar'), $filename);
+
+        $pengguna->avatar = $filename;
+        $pengguna->save();
     }
+
+    return redirect('/pengguna');
+    }
+
 
     /**
      * Remove the specified resource from storage.

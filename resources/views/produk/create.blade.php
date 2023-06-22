@@ -47,13 +47,14 @@
 
                 <div class="form-group">
                     <label for="deskripsi">Deskripsi</label>
-                    <input type="text" class="form-control @error('deskripsi') is-invalid @enderror" name="deskripsi" value="{{ old('deskripsi') }}">
+                    <textarea class="form-control @error('deskripsi') is-invalid @enderror" name="deskripsi" rows="5">{{ old('deskripsi') }}</textarea>
                     @error('deskripsi')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
                     @enderror
                 </div>
+                
 
                 <div class="form-group">
                     <label for="harga">Harga</label>

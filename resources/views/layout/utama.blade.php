@@ -28,24 +28,45 @@
 
   <script src="{{ asset('js/jquery.min.js') }}"></script>
   <script src={{ asset('css/OwlCarousel/dist/owl.carousel.min.js') }}></script>
+  <script src="{{ asset('bootstrap/bootstrap.bundle.min.js') }}"></script>  
+    
   <script>
-    $('.owl-carousel').owlCarousel({
+   $('.owl-carousel').owlCarousel({
     loop:true,
     margin:10,
     responsiveClass:true,
+    autoplay:true,
+    autoplayTimeout:5000,
+    autoplayHoverPause:false,
+    autoplaySpeed: 1000,
     responsive:{
         0:{
             items:1,
-            nav:true
         },
         600:{
             items:3,
-            nav:false
         },
         1000:{
             items:3,
-            nav:true,
-            loop:false
+        }
+    }
+    })
+   </script>
+
+<script>
+    $('.owl-carousel2').owlCarousel({
+    loop:true,
+    margin:10,
+    nav:true,
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:1
+        },
+        1000:{
+            items:1
         }
     }
 })

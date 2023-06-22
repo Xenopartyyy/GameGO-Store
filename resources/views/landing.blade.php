@@ -1,35 +1,27 @@
 @extends('layout.utama')
 
 @section('konten')
-    {{-- carousel start --}}
-    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-                aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                aria-label="Slide 3"></button>
-        </div>
-        <div class="carousel-inner">
-            @foreach ($slide as $key => $item)
-                <div class="carousel-item{{ $key === 0 ? ' active' : '' }}">
-                    <img src="{{ asset('storage/banner/' . $item['banner']) }}" class="d-block w-100" alt="Banner">
-                </div>
-            @endforeach
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-            data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-            data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+ {{-- carousel start --}}
+ <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        @foreach ($slide as $key => $item)
+            <div class="carousel-item{{ $key === 0 ? ' active' : '' }}">
+                <img src="{{ asset('storage/banner/' . $item['banner']) }}" class="d-block w-100" alt="Banner">
+            </div>
+        @endforeach
     </div>
-    {{-- carousel end --}}
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+{{-- carousel end --}}
 
     {{-- providing start --}}
     <div class="my-3">
@@ -114,7 +106,7 @@
             <div>
               <div class="cardtest p-3 text-center px-4">
                 <div class="user-image text-center">
-                    <img src="{{ asset('storage/avatartesti/' . $testi['avatar']) }}" class="card-img-top rounded-circle m-auto w-50">
+                    <img src="{{ asset('storage/avatartesti/' . $testi['avatar']) }}" class="card-img-top rounded-circle m-auto" style="width: 150px; height:150px; object-fit:cover">
                 </div>
                 <div class="user-content">
                   <h5 class="my-3">{{ $testi['nama']}}</h5>

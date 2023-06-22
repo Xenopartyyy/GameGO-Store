@@ -105,7 +105,7 @@ class TestimoniController extends Controller
             'testi' => 'required|min:30',
             'status' => 'required',
         ]);
-
+    
         $testimoni = Testimoni::findOrFail($id);
         $testimoni->nama = $validatedData['nama'];
         $testimoni->profesi = $validatedData['profesi'];
@@ -113,6 +113,14 @@ class TestimoniController extends Controller
         $testimoni->status = $validatedData['status'];
     
         if ($request->hasFile('avatar') && $request->file('avatar')->isValid()) {
+            // Hapus avatar sebelumnya jika ada
+            if ($testimoni->avatar) {
+                $avatarPath = public_path('storage/avatartesti/') . $testimoni->avatar;
+                if (file_exists($avatarPath)) {
+                    unlink($avatarPath);
+                }
+            }
+    
             $file = $request->file('avatar');
             $filename = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('storage/avatartesti'), $filename);
@@ -121,9 +129,9 @@ class TestimoniController extends Controller
     
         $testimoni->save();
     
-        return redirect('/testimoni'); 
+        return redirect('/testimoni');
     }
-
+    
     /**
      * Remove the specified resource from storage.
      *

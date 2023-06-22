@@ -40,10 +40,11 @@
          @forelse ($produk as $item)
             <div class="col-lg-4 col-sm-12  text-center">
                 <div class="card item cardpro text-center mb-4 m-auto">
-                    <img src="{{ asset('storage/avatarproduk/' . $item['avatar']) }}">
+                    <img src="{{ asset('storage/avatarproduk/' . $item['avatar']) }}" style="width: 300px; height:300px; object-fit:contain; margin:auto">
                     <div class="card-body ">
                         <h5 class="card-title">{{ $item['nama'] }}</h5>
-                        <p class="card-text">{{ 'Rp. ' . number_format($item['harga'], 0, ',', '.') }}</p>                            <a class="btn btn-primary" href="/showproduct/{{ $item->id }}">Lihat lebih lanjut</a>
+                        <p class="card-text">{{ 'Rp. ' . number_format($item['harga'], 0, ',', '.') }}</p>                            
+                        <a class="btn btn-primary" href="/showproduct/{{ $item->id }}">Lihat lebih lanjut</a>
                     </div>
                 </div>
             </div>
